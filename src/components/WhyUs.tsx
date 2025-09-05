@@ -59,7 +59,7 @@ const WhyUs = () => {
                        transition-transform duration-300 hover:shadow-2xl"
           >
             <div className="mb-4">{feature.icon}</div>
-            <Heading as="h3" size="lg" color="dark" className="mb-2">
+            <Heading as="h3" size="2xl" color="dark" className="mb-2">
               {feature.title}
             </Heading>
             <Text color="muted-dark" className="text-sm">

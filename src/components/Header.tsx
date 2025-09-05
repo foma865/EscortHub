@@ -4,9 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useModalStore } from '@/stores/useModalStore';
 import { Button } from './ui/Button';
-import Container from './ui/Container';
-import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const { openModal } = useModalStore();
@@ -20,74 +19,88 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 ${
+        scrolled ? 'backdrop-blur-lg bg-white/40 shadow-md' : 'backdrop-blur-lg bg-white/20'
+      } transition-all duration-300`}
+    >
+      <div className="flex justify-between items-center w-full max-w-full px-4 py-4 md:px-8">
+        {/* Левая группа: контакты */}
+        <div className="flex items-center gap-4 md:gap-6 text-sm md:text-base text-gray-800">
+          <span>Россия</span>
+          <Link href="https://t.me/yourtelegram" target="_blank" className="hover:underline">
+            Telegram
+          </Link>
+          <Link href="https://wa.me/1234567890" target="_blank" className="hover:underline">
+            WhatsApp
+          </Link>
+          <a href="tel:+71234567890" className="font-semibold hover:underline">
+            +7 (123) 456-78-90
+          </a>
+        </div>
+
+        {/* Правая группа: кнопки */}
+        <div className="hidden md:flex items-center gap-4">
+          <Button
+            variant="outline"
+            size="sm"
+            className="border border-gray-800 text-gray-800 hover:bg-gray-100 hover:border-gray-900"
+          >
+            Каталог
+          </Button>
+          <Button
+            variant="secondary"
+            size="sm"
+            className="bg-gray-800 text-white hover:bg-gray-900"
+            onClick={openModal}
+          >
+            Связь
+          </Button>
+        </div>
+
+        {/* Бургер для мобильных */}
+        <div className="md:hidden">
+          <button onClick={() => setIsOpen(!isOpen)} className="text-gray-800">
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+      </div>
+
+      {/* Мобильное меню */}
       <AnimatePresence>
-        <motion.div
-          initial={{ y: -100 }}
-          animate={{ y: 0 }}
-          transition={{ duration: 0.5, ease: 'easeOut' }}
-          className={`transition-colors duration-300 ${
-            scrolled ? 'bg-ui-background/80 backdrop-blur-lg shadow-lg' : 'bg-transparent'
-          }`}
-        >
-          <Container className="flex items-center justify-between py-4 relative">
-            
-            {/* Левая часть */}
-            <div className="flex items-center space-x-6">
-              <span>Россия</span>
-              <Link href="https://t.me/yourtelegram" target="_blank" className="hover:underline">
-                Telegram
-              </Link>
-              <Link href="https://wa.me/1234567890" target="_blank" className="hover:underline">
-                WhatsApp
-              </Link>
-              <a href="tel:+71234567890" className="font-semibold">
-                +7 (123) 456-78-90
-              </a>
-            </div>
-
-            {/* Правая часть */}
-            <div className="hidden md:flex items-center space-x-4">
-              <Button variant="outline" size="sm">Каталог</Button>
-              <Button variant="secondary" size="sm" onClick={openModal}>Связь</Button>
-            </div>
-
-            {/* Бургер для мобильных */}
-            <div className="md:hidden">
-              <button onClick={() => setIsOpen(!isOpen)}>
-                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
-
-            {/* Мобильное меню */}
-            <AnimatePresence>
-              {isOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute top-full right-0 mt-2 w-48 bg-white shadow-lg rounded-lg flex flex-col p-4 space-y-2 md:hidden z-50"
-                >
-                  <span>Россия</span>
-                  <Link href="https://t.me/yourtelegram" target="_blank" className="hover:underline">
-                    Telegram
-                  </Link>
-                  <Link href="https://wa.me/1234567890" target="_blank" className="hover:underline">
-                    WhatsApp
-                  </Link>
-                  <a href="tel:+71234567890" className="font-semibold">
-                    +7 (123) 456-78-90
-                  </a>
-                  <Button variant="secondary" size="sm" onClick={openModal}>
-                    Связаться
-                  </Button>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-          </Container>
-        </motion.div>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="md:hidden bg-white/90 backdrop-blur-lg shadow-md w-full px-4 py-4 flex flex-col gap-3 text-gray-800"
+          >
+            <Link href="https://t.me/yourtelegram" target="_blank" className="hover:underline">
+              Telegram
+            </Link>
+            <Link href="https://wa.me/1234567890" target="_blank" className="hover:underline">
+              WhatsApp
+            </Link>
+            <a href="tel:+71234567890" className="font-semibold hover:underline">
+              +7 (123) 456-78-90
+            </a>
+            <Button
+              variant="outline"
+              size="sm"
+              className="border border-gray-800 text-gray-800 hover:bg-gray-100 hover:border-gray-900"
+            >
+              Каталог
+            </Button>
+            <Button
+              variant="secondary"
+              size="sm"
+              className="bg-gray-800 text-white hover:bg-gray-900"
+              onClick={openModal}
+            >
+              Связь
+            </Button>
+          </motion.div>
+        )}
       </AnimatePresence>
     </header>
   );

@@ -14,10 +14,10 @@ const config: Config = {
         serif: ['var(--font-playfair)', 'serif'],
       },
       colors: {
-        'ui-background': '#0D0D0D', // Deep graphite
-        'ui-background-light': '#F9FAFB',
+        'ui-background': '#040404ff', // Deep graphite
+        'ui-background-light': '#33577aff',
         'ui-surface': '#1F2937',
-        'ui-surface-light': '#FFFFFF',
+        'ui-surface-light': '#fcf5f5ff',
         'brand-primary': '#C1224F', // Muted, wine-like pink
         'brand-primary-light': '#FBCFE8',
         'brand-secondary': '#D97706', // Richer orange

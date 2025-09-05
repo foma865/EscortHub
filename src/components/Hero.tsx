@@ -9,9 +9,9 @@ export default function Hero() {
   return (
     <section
       className="relative bg-cover bg-center bg-no-repeat text-black h-[600px]"
-      style={{ backgroundImage: "url('/images/hero-bg.jpg')" }}
+      style={{ backgroundImage: "url('/images/model-2.jpg')" }}
     >
-      <div className="max-w-5xl mx-auto h-full flex flex-col justify-center px-6 bg-black/30">
+      <div className="max-w-5xl mx-auto h-full flex flex-col justify-center px-40 bg-black/30">
         {/* Заголовок */}
         <h1
           className={`${playfair.className} text-6xl font-bold mb-6 text-white`}
