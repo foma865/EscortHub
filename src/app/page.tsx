@@ -4,7 +4,7 @@ import Link from "next/link";
 import Hero from "@/components/Hero";
 import WhyUs from '@/components/WhyUs';
 import FinalCTA from '@/components/FinalCTA'
-import ContactForm from "@/components/ContactForm";
+import Contact from "@/components/Contact";
 import ModelsGallery from "@/components/ModelsGallery";
 import HowItWorks from '@/components/HowItWorks'
 import Section from "@/components/Section";
@@ -19,7 +19,7 @@ export default function Page() {
        <WhyUs />
        <MediaCard/>
         <FinalCTA/> 
-       <ContactForm/>
+       <Contact/>
        <ModelsGallery/>
        <HowItWorks/>
        <Section children={undefined}/>
